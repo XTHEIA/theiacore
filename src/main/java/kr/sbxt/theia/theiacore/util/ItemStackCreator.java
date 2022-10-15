@@ -2,6 +2,7 @@ package kr.sbxt.theia.theiacore.util;
 
 import kr.sbxt.theia.theiacore.TheiaCore;
 import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -21,7 +22,7 @@ public final class ItemStackCreator
 	
 	public static ItemStack simple(Material material, boolean shiny, final int qty, final Component displayName, final Component... lores)
 	{
-		final var meta = TheiaCore.getItemFactory().getItemMeta(material);
+		final var meta = Bukkit.getItemFactory().getItemMeta(material);
 		meta.displayName(displayName);
 		meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		if (lores != null && lores.length > 0)
@@ -66,7 +67,7 @@ public final class ItemStackCreator
 	
 	public static ItemStack empty(final Material material)
 	{
-		final var meta = TheiaCore.getItemFactory().getItemMeta(material);
+		final var meta = Bukkit.getItemFactory().getItemMeta(material);
 		meta.displayName(Component.empty());
 		final var item = new ItemStack(material, 1);
 		item.setItemMeta(meta);

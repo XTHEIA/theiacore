@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'kr.sbxt.theia'
-version = '1.6'
+version = '0.0'
 
 
 
@@ -23,23 +23,32 @@ repositories {
 dependencies {
     compileOnly 'io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT'
 }
+
+def file = new File('core.version');
+int previous = Integer.parseInt(file.text)
+int build = previous + 1
+file.write(build.toString())
+
 publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/sbkimxtheia/theiacore")
+            url = uri("https://maven.pkg.github.com/XTHEIA/theiacore")
             credentials {
                 username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
                 password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
             }
         }
     }
+
+
     def publishName = 'THEIA Plugin Core'
     def publishDesc = 'Published at ' + LocalDateTime.now().format("yyyy.MM.dd HH:mm:ss");
     publications {
         gpr(MavenPublication) {
             description = publishDesc
             from(components.java)
+            version('b' + version + '.' + build)
             pom {
                 name = publishName
                 description = publishDesc
