@@ -4,7 +4,9 @@ plugins {
 }
 
 group = 'kr.sbxt.theia'
-version = '1.0'
+version = '1.6'
+
+
 
 repositories {
     mavenCentral()
@@ -32,14 +34,33 @@ publishing {
             }
         }
     }
+    def publishName = 'THEIA Plugin Core'
+    def publishDesc = 'Published at ' + LocalDateTime.now().format("yyyy.MM.dd HH:mm:ss");
     publications {
         gpr(MavenPublication) {
+            description = publishDesc
             from(components.java)
+            pom {
+                name = publishName
+                description = publishDesc
+            }
         }
     }
 }
 def targetJavaVersion = 17
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+javadoc {
+    options.encoding = 'UTF-8'
+}
+
 java {
+    withSourcesJar()
+    withJavadocJar()
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     sourceCompatibility = javaVersion
     targetCompatibility = javaVersion
@@ -48,11 +69,13 @@ java {
     }
 }
 
+
 tasks.withType(JavaCompile).configureEach {
     if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
         options.release = targetJavaVersion
     }
 }
+
 
 processResources {
     def props = [version: version]
