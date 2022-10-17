@@ -1,5 +1,0 @@
-name: THEIA
-version: '${version}'
-main: kr.sbxt.theia.theiacore.TheiaCore
-api-version: 1.19
-load: STARTUP
