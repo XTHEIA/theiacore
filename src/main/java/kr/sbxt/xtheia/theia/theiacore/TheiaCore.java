@@ -15,5 +15,15 @@ public final class TheiaCore
 	/**
 	 * GitHub Packages URL of this Library
 	 */
-			PACKAGES_URL = "https://github.com/XTHEIA/theiacore/packages/1676036";
+	PACKAGES_URL = "https://github.com/XTHEIA/theiacore/packages/1676036",
+	
+	/**
+	 * ASCII Art of text "XTHEIA"
+	 */
+	ORG_ASCII_ART = """
+			__  _______ _   _ _____ ___    _   \s
+			\\ \\/ /_   _| | | | ____|_ _|  / \\  \s
+			 \\  /  | | | |_| |  _|  | |  / _ \\ \s
+			 /  \\  | | |  _  | |___ | | / ___ \\\s
+			/_/\\_\\ |_| |_| |_|_____|___/_/   \\_\\""";
 }
